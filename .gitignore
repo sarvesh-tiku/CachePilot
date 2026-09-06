@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+cachepilot.db
+benchmark/results/**/*.csv
+benchmark/results/**/index.json
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Env / OS
+.env
+.DS_Store

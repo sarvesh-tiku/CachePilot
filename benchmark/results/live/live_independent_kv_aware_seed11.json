@@ -1,0 +1,95 @@
+{
+  "run_id": "ee314d56-ec01-4829-9242-9876f354e0a6",
+  "created_at": "2026-09-05T19:45:08.620598Z",
+  "workload": {
+    "name": "independent",
+    "description": "Every request has a unique 2K-token prefix. Locality cannot help; kv_aware should converge to load-aware routing.",
+    "prefix_tokens": 512,
+    "question_tokens": 32,
+    "output_tokens": 24,
+    "shared_prefix_count": 0,
+    "shared_fraction": 0.0,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "poisson",
+      "rate_rps": 0.5,
+      "burst_size": 10,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 500.0
+    },
+    "kv_capacity_bytes_per_worker": null
+  },
+  "policy": "kv_aware",
+  "policy_parameters": {
+    "alpha": 2.0,
+    "beta": 0.8,
+    "gamma": 0.4,
+    "delta": 0.002
+  },
+  "seed": 11,
+  "requested": 24,
+  "workers": 1,
+  "metrics": {
+    "requests": 24,
+    "completed": 24,
+    "makespan_ms": 35925.1734999998,
+    "requests_per_s": 0.6680552287381475,
+    "output_tokens_per_s": 15.560119702692685,
+    "ttft_ms": {
+      "mean": 367.9631683783858,
+      "p50": 288.1115839991253,
+      "p95": 904.1161659988575,
+      "p99": 922.8829170169774,
+      "max": 922.8829170169774
+    },
+    "total_latency_ms": {
+      "mean": 511.9186024191246,
+      "p50": 438.9677080034744,
+      "p95": 1095.3319999971427,
+      "p99": 1143.5129170131404,
+      "max": 1143.5129170131404
+    },
+    "queue_wait_ms": {
+      "mean": 0.0,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+    },
+    "cache_hit_rate": 0.0,
+    "mean_cache_overlap": 0.0,
+    "ttft_ms_by_cache": {
+      "miss": {
+        "mean": 367.9631683783858,
+        "p50": 288.1115839991253,
+        "p95": 904.1161659988575,
+        "p99": 922.8829170169774,
+        "max": 922.8829170169774
+      }
+    },
+    "prefill_tokens_total": 13176,
+    "prefill_tokens_saved": 0,
+    "prefill_saved_fraction": 0.0,
+    "worker_request_counts": {
+      "mlx-0": 24
+    },
+    "worker_imbalance": 1.0,
+    "kv": [
+      {
+        "worker_id": "mlx-0",
+        "source": "estimated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 6912212992,
+        "entries": 103,
+        "hits": 1,
+        "misses": 26,
+        "evictions": 0
+      }
+    ]
+  },
+  "mode": "live",
+  "gateway_url": "http://localhost:8000",
+  "worker_backends": {
+    "mlx-0": "vllm"
+  }
+}

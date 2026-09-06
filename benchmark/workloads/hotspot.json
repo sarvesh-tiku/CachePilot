@@ -1,0 +1,10 @@
+{
+  "name": "hotspot",
+  "description": "60% of a 40 rps stream shares one 4K-token prefix. Tests whether cache affinity concentrates load on one worker and hurts tail latency.",
+  "prefix_tokens": 4096,
+  "question_tokens": 32,
+  "output_tokens": 64,
+  "shared_prefix_count": 1,
+  "shared_fraction": 0.6,
+  "arrival": {"kind": "poisson", "rate_rps": 40.0}
+}

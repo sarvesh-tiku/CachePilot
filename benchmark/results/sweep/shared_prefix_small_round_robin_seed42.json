@@ -1,0 +1,117 @@
+{
+  "run_id": "49f9bfe1-9e09-440b-92f9-27c35d98f5a3",
+  "created_at": "2026-09-05T21:45:35.401819Z",
+  "workload": {
+    "name": "shared_prefix_small",
+    "description": "25% of traffic shares one 2K-token prefix; the rest is unique. Expect a moderate locality benefit.",
+    "prefix_tokens": 2048,
+    "question_tokens": 32,
+    "output_tokens": 64,
+    "shared_prefix_count": 1,
+    "shared_fraction": 0.25,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "poisson",
+      "rate_rps": 20.0,
+      "burst_size": 10,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 500.0
+    },
+    "kv_capacity_bytes_per_worker": null
+  },
+  "policy": "round_robin",
+  "policy_parameters": {},
+  "seed": 42,
+  "requested": 1000,
+  "workers": 3,
+  "metrics": {
+    "requests": 1000,
+    "completed": 1000,
+    "makespan_ms": 47774.931256194315,
+    "requests_per_s": 20.931479621341033,
+    "output_tokens_per_s": 1339.6146957658261,
+    "ttft_ms": {
+      "mean": 146.5354449136913,
+      "p50": 163.58341182172907,
+      "p95": 195.6398340798643,
+      "p99": 206.68032801919713,
+      "max": 214.39547937954646
+    },
+    "total_latency_ms": {
+      "mean": 650.5354449136912,
+      "p50": 667.5834118217291,
+      "p95": 699.6398340798643,
+      "p99": 710.6803280191971,
+      "max": 718.3954793795465
+    },
+    "queue_wait_ms": {
+      "mean": 50.964,
+      "p50": 48.0,
+      "p95": 72.0,
+      "p99": 84.0,
+      "max": 96.0
+    },
+    "cache_hit_rate": 0.232,
+    "mean_cache_overlap": 0.22788297362110313,
+    "ttft_ms_by_cache": {
+      "hit": {
+        "mean": 67.22988193103555,
+        "p50": 66.63750024182205,
+        "p95": 92.11110111903785,
+        "p99": 98.20429858217412,
+        "max": 104.21514992012692
+      },
+      "miss": {
+        "mean": 170.49233373136857,
+        "p50": 169.68426272484112,
+        "p95": 197.44906881271146,
+        "p99": 206.7618882136575,
+        "max": 214.39547937954646
+      }
+    },
+    "prefill_tokens_total": 1609864,
+    "prefill_tokens_saved": 475136,
+    "prefill_saved_fraction": 0.22788297362110313,
+    "worker_request_counts": {
+      "worker-0": 334,
+      "worker-1": 333,
+      "worker-2": 333
+    },
+    "worker_imbalance": 1.002,
+    "kv": [
+      {
+        "worker_id": "worker-0",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 81,
+        "misses": 253,
+        "evictions": 3888
+      },
+      {
+        "worker_id": "worker-1",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 72,
+        "misses": 261,
+        "evictions": 4016
+      },
+      {
+        "worker_id": "worker-2",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 79,
+        "misses": 254,
+        "evictions": 3872
+      }
+    ]
+  },
+  "mode": "simulated",
+  "gateway_url": null,
+  "worker_backends": {}
+}

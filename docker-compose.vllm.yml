@@ -1,0 +1,40 @@
+# Optional overlay: add one real vLLM worker (NVIDIA GPU required).
+#   docker compose -f docker-compose.yml -f docker-compose.vllm.yml up --build
+# Pick a model that fits your GPU; the default is small enough for ~4 GB of VRAM.
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    command:
+      - --model
+      - ${VLLM_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}
+      - --enable-prefix-caching
+      - --max-model-len
+      - "8192"
+    ports:
+      - "8001:8000"
+    volumes:
+      - huggingface_cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 60
+
+  backend:
+    environment:
+      CACHEPILOT_VLLM_URL: http://vllm:8000
+      CACHEPILOT_VLLM_MODEL: ${VLLM_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}
+      CACHEPILOT_VLLM_WORKER_ID: vllm-0
+    depends_on:
+      vllm:
+        condition: service_healthy
+
+volumes:
+  huggingface_cache:

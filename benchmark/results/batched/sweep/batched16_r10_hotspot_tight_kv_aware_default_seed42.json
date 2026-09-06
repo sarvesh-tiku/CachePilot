@@ -1,0 +1,136 @@
+{
+  "run_id": "32d42f43-8b99-47f9-b83f-211d557715f3",
+  "created_at": "2026-09-06T06:27:06.594098Z",
+  "workload": {
+    "name": "hotspot_tight",
+    "description": "Same 60%-hot 40 rps stream as hotspot, but each worker can hold only ~one 4K-token prefix (2 GiB of KV). The hot prefix cannot replicate across workers, so cache affinity must concentrate load on whichever worker holds it. This is the stress test for the failure hypothesis.",
+    "prefix_tokens": 4096,
+    "question_tokens": 32,
+    "output_tokens": 64,
+    "shared_prefix_count": 1,
+    "shared_fraction": 0.6,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "poisson",
+      "rate_rps": 10.0,
+      "burst_size": 10,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 500.0
+    },
+    "kv_capacity_bytes_per_worker": 2147483648
+  },
+  "policy": "kv_aware",
+  "policy_parameters": {
+    "alpha": 2.0,
+    "beta": 0.8,
+    "gamma": 0.4,
+    "delta": 0.002
+  },
+  "seed": 42,
+  "requested": 600,
+  "workers": 3,
+  "metrics": {
+    "requests": 600,
+    "completed": 600,
+    "makespan_ms": 59123.03905418466,
+    "requests_per_s": 10.148328123832002,
+    "output_tokens_per_s": 649.4929999252481,
+    "ttft_ms": {
+      "mean": 171.57302397417556,
+      "p50": 218.621913947145,
+      "p95": 466.41879545671645,
+      "p99": 603.8511011012683,
+      "max": 865.4357546638885
+    },
+    "total_latency_ms": {
+      "mean": 1213.3209675982475,
+      "p50": 1005.0349500270822,
+      "p95": 2644.3630501992557,
+      "p99": 3811.9845595511515,
+      "max": 4160.465491055433
+    },
+    "queue_wait_ms": {
+      "mean": 32.72579234155957,
+      "p50": 7.534243327874719,
+      "p95": 180.94995985932292,
+      "p99": 228.48632455189818,
+      "max": 425.5401218148231
+    },
+    "cache_hit_rate": 0.5016666666666667,
+    "mean_cache_overlap": 0.4971755786756996,
+    "ttft_ms_by_cache": {
+      "hit": {
+        "mean": 48.77953510853431,
+        "p50": 35.60401374779758,
+        "p95": 130.6368734236603,
+        "p99": 250.9177586973692,
+        "max": 446.7252479615945
+      },
+      "miss": {
+        "mean": 295.1878739693529,
+        "p50": 240.97058944444507,
+        "p95": 535.0593163776471,
+        "p99": 628.7479793950843,
+        "max": 865.4357546638885
+      }
+    },
+    "prefill_tokens_total": 1246904,
+    "prefill_tokens_saved": 1232896,
+    "prefill_saved_fraction": 0.49717557867569967,
+    "worker_request_counts": {
+      "worker-0": 147,
+      "worker-1": 135,
+      "worker-2": 318
+    },
+    "worker_imbalance": 1.59,
+    "kv": [
+      {
+        "worker_id": "worker-0",
+        "source": "simulated",
+        "capacity_bytes": 2147483648,
+        "used_bytes": 2147483648,
+        "entries": 32,
+        "hits": 13,
+        "misses": 134,
+        "evictions": 4480
+      },
+      {
+        "worker_id": "worker-1",
+        "source": "simulated",
+        "capacity_bytes": 2147483648,
+        "used_bytes": 2147483648,
+        "entries": 32,
+        "hits": 13,
+        "misses": 122,
+        "evictions": 3840
+      },
+      {
+        "worker_id": "worker-2",
+        "source": "simulated",
+        "capacity_bytes": 2147483648,
+        "used_bytes": 2147483648,
+        "entries": 32,
+        "hits": 275,
+        "misses": 43,
+        "evictions": 1824
+      }
+    ]
+  },
+  "mode": "simulated",
+  "gateway_url": null,
+  "worker_backends": {},
+  "worker_config": {
+    "prefill_cost_per_token_ms": 0.05,
+    "decode_cost_per_token_ms": 8.0,
+    "fixed_overhead_ms": 15.0,
+    "kv_capacity_bytes": 2147483648,
+    "service_rate_multiplier": 1.0,
+    "queue_wait_ms_per_pending": 12.0,
+    "latency_noise_ms_stddev": 5.0,
+    "queue_model": "batched",
+    "max_batch_size": 16,
+    "kv_budget_tokens": 65536,
+    "decode_step_base_ms": 7.5,
+    "decode_step_per_seq_ms": 0.5
+  }
+}

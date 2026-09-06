@@ -1,0 +1,11 @@
+{
+  "name": "cache_pressure",
+  "description": "40 distinct 2K-token prefixes (1 GiB of KV each) cycle uniformly against 4 GiB of KV per worker: the working set is ~3x total capacity. Tests eviction behavior.",
+  "prefix_tokens": 2048,
+  "question_tokens": 32,
+  "output_tokens": 64,
+  "shared_prefix_count": 40,
+  "shared_fraction": 1.0,
+  "arrival": {"kind": "poisson", "rate_rps": 20.0},
+  "kv_capacity_bytes_per_worker": 4294967296
+}

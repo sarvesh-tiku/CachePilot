@@ -1,0 +1,95 @@
+{
+  "run_id": "bf146c90-186a-415e-b4f2-6607a5a0837c",
+  "created_at": "2026-09-05T18:55:47.102713Z",
+  "workload": {
+    "name": "cache_pressure",
+    "description": "40 distinct 2K-token prefixes (1 GiB of KV each) cycle uniformly against 4 GiB of KV per worker: the working set is ~3x total capacity. Tests eviction behavior.",
+    "prefix_tokens": 2048,
+    "question_tokens": 32,
+    "output_tokens": 64,
+    "shared_prefix_count": 40,
+    "shared_fraction": 1.0,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "poisson",
+      "rate_rps": 20.0,
+      "burst_size": 10,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 500.0
+    },
+    "kv_capacity_bytes_per_worker": 4294967296
+  },
+  "policy": "least_loaded",
+  "policy_parameters": {},
+  "seed": 42,
+  "requested": 1000,
+  "workers": 3,
+  "metrics": {
+    "requests": 1000,
+    "completed": 1000,
+    "makespan_ms": 48783.621687139894,
+    "requests_per_s": 20.498683070585045,
+    "output_tokens_per_s": 1311.915716517443,
+    "ttft_ms": {
+      "mean": 157.22364252263995,
+      "p50": 165.93394666583063,
+      "p95": 190.43879438209586,
+      "p99": 202.35658296177334,
+      "max": 210.8936389988478
+    },
+    "total_latency_ms": {
+      "mean": 661.2236425226399,
+      "p50": 669.9339466658306,
+      "p95": 694.4387943820959,
+      "p99": 706.3565829617734,
+      "max": 714.8936389988478
+    },
+    "queue_wait_ms": {
+      "mean": 47.496,
+      "p50": 48.0,
+      "p95": 72.0,
+      "p99": 84.0,
+      "max": 96.0
+    },
+    "cache_hit_rate": 0.094,
+    "mean_cache_overlap": 0.09233189448441247,
+    "prefill_tokens_total": 1892488,
+    "prefill_tokens_saved": 192512,
+    "prefill_saved_fraction": 0.09233189448441247,
+    "worker_request_counts": {
+      "worker-0": 353,
+      "worker-1": 335,
+      "worker-2": 312
+    },
+    "worker_imbalance": 1.0590000000000002,
+    "kv": [
+      {
+        "worker_id": "worker-0",
+        "capacity_bytes": 4294967296,
+        "used_bytes": 4294967296,
+        "entries": 64,
+        "hits": 34,
+        "misses": 319,
+        "evictions": 4784
+      },
+      {
+        "worker_id": "worker-1",
+        "capacity_bytes": 4294967296,
+        "used_bytes": 4294967296,
+        "entries": 64,
+        "hits": 34,
+        "misses": 301,
+        "evictions": 4576
+      },
+      {
+        "worker_id": "worker-2",
+        "capacity_bytes": 4294967296,
+        "used_bytes": 4294967296,
+        "entries": 64,
+        "hits": 26,
+        "misses": 286,
+        "evictions": 4304
+      }
+    ]
+  }
+}

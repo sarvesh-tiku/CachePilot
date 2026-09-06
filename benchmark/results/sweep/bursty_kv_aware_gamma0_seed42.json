@@ -1,0 +1,122 @@
+{
+  "run_id": "db5c3d0f-ed35-4a90-8205-2f06bd1d4e20",
+  "created_at": "2026-09-05T21:43:07.480542Z",
+  "workload": {
+    "name": "bursty",
+    "description": "Same-prefix requests arrive in bursts of 12 spaced 5ms apart, then a pause. Tests locality against queue overload when the cache is not yet warm for the burst.",
+    "prefix_tokens": 4096,
+    "question_tokens": 32,
+    "output_tokens": 64,
+    "shared_prefix_count": 4,
+    "shared_fraction": 0.8,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "bursty",
+      "rate_rps": 20.0,
+      "burst_size": 12,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 600.0
+    },
+    "kv_capacity_bytes_per_worker": null
+  },
+  "policy": "kv_aware",
+  "policy_parameters": {
+    "alpha": 2.0,
+    "beta": 0.8,
+    "gamma": 0.0,
+    "delta": 0.002
+  },
+  "seed": 42,
+  "requested": 1000,
+  "workers": 3,
+  "metrics": {
+    "requests": 1000,
+    "completed": 1000,
+    "makespan_ms": 46669.26220790925,
+    "requests_per_s": 21.427379664693426,
+    "output_tokens_per_s": 1371.3522985403793,
+    "ttft_ms": {
+      "mean": 186.30949418743364,
+      "p50": 195.0222786688374,
+      "p95": 342.6648458865498,
+      "p99": 387.64188545114763,
+      "max": 410.21953905275825
+    },
+    "total_latency_ms": {
+      "mean": 690.3094941874336,
+      "p50": 699.0222786688374,
+      "p95": 846.6648458865498,
+      "p99": 891.6418854511476,
+      "max": 914.2195390527583
+    },
+    "queue_wait_ms": {
+      "mean": 72.912,
+      "p50": 72.0,
+      "p95": 168.0,
+      "p99": 204.0,
+      "max": 252.0
+    },
+    "cache_hit_rate": 0.529,
+    "mean_cache_overlap": 0.5242642148560368,
+    "ttft_ms_by_cache": {
+      "hit": {
+        "mean": 99.36058470076188,
+        "p50": 90.7883902205097,
+        "p95": 197.29474596155896,
+        "p99": 244.96276715653784,
+        "max": 270.614311878767
+      },
+      "miss": {
+        "mean": 283.96548806949176,
+        "p50": 277.29363899884777,
+        "p95": 366.560733185481,
+        "p99": 395.75718206538335,
+        "max": 410.21953905275825
+      }
+    },
+    "prefill_tokens_total": 1966216,
+    "prefill_tokens_saved": 2166784,
+    "prefill_saved_fraction": 0.5242642148560368,
+    "worker_request_counts": {
+      "worker-0": 289,
+      "worker-1": 334,
+      "worker-2": 377
+    },
+    "worker_imbalance": 1.131,
+    "kv": [
+      {
+        "worker_id": "worker-0",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 112,
+        "misses": 177,
+        "evictions": 3072
+      },
+      {
+        "worker_id": "worker-1",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 173,
+        "misses": 161,
+        "evictions": 2752
+      },
+      {
+        "worker_id": "worker-2",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 244,
+        "misses": 133,
+        "evictions": 2080
+      }
+    ]
+  },
+  "mode": "simulated",
+  "gateway_url": null,
+  "worker_backends": {}
+}

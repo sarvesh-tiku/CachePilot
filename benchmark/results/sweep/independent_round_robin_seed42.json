@@ -1,0 +1,110 @@
+{
+  "run_id": "17fdd6c0-590c-45dd-a4f9-b95a755b4830",
+  "created_at": "2026-09-05T21:44:38.915583Z",
+  "workload": {
+    "name": "independent",
+    "description": "Every request has a unique 2K-token prefix. Locality cannot help; kv_aware should converge to load-aware routing.",
+    "prefix_tokens": 2048,
+    "question_tokens": 32,
+    "output_tokens": 64,
+    "shared_prefix_count": 0,
+    "shared_fraction": 0.0,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "poisson",
+      "rate_rps": 20.0,
+      "burst_size": 10,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 500.0
+    },
+    "kv_capacity_bytes_per_worker": null
+  },
+  "policy": "round_robin",
+  "policy_parameters": {},
+  "seed": 42,
+  "requested": 1000,
+  "workers": 3,
+  "metrics": {
+    "requests": 1000,
+    "completed": 1000,
+    "makespan_ms": 51448.70080352247,
+    "requests_per_s": 19.436836778811998,
+    "output_tokens_per_s": 1243.9575538439678,
+    "ttft_ms": {
+      "mean": 168.3002449136913,
+      "p50": 166.98776508874914,
+      "p95": 201.41399680214533,
+      "p99": 214.55309091763309,
+      "max": 235.17785082003817
+    },
+    "total_latency_ms": {
+      "mean": 672.3002449136914,
+      "p50": 670.9877650887491,
+      "p95": 705.4139968021453,
+      "p99": 718.5530909176331,
+      "max": 739.1778508200382
+    },
+    "queue_wait_ms": {
+      "mean": 48.972,
+      "p50": 48.0,
+      "p95": 84.0,
+      "p99": 96.0,
+      "max": 108.0
+    },
+    "cache_hit_rate": 0.0,
+    "mean_cache_overlap": 0.0,
+    "ttft_ms_by_cache": {
+      "miss": {
+        "mean": 168.3002449136913,
+        "p50": 166.98776508874914,
+        "p95": 201.41399680214533,
+        "p99": 214.55309091763309,
+        "max": 235.17785082003817
+      }
+    },
+    "prefill_tokens_total": 2085000,
+    "prefill_tokens_saved": 0,
+    "prefill_saved_fraction": 0.0,
+    "worker_request_counts": {
+      "worker-0": 334,
+      "worker-1": 333,
+      "worker-2": 333
+    },
+    "worker_imbalance": 1.002,
+    "kv": [
+      {
+        "worker_id": "worker-0",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 0,
+        "misses": 334,
+        "evictions": 5216
+      },
+      {
+        "worker_id": "worker-1",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 0,
+        "misses": 333,
+        "evictions": 5200
+      },
+      {
+        "worker_id": "worker-2",
+        "source": "simulated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8589934592,
+        "entries": 128,
+        "hits": 0,
+        "misses": 333,
+        "evictions": 5200
+      }
+    ]
+  },
+  "mode": "simulated",
+  "gateway_url": null,
+  "worker_backends": {}
+}

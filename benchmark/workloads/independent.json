@@ -1,0 +1,10 @@
+{
+  "name": "independent",
+  "description": "Every request has a unique 2K-token prefix. Locality cannot help; kv_aware should converge to load-aware routing.",
+  "prefix_tokens": 2048,
+  "question_tokens": 32,
+  "output_tokens": 64,
+  "shared_prefix_count": 0,
+  "shared_fraction": 0.0,
+  "arrival": {"kind": "poisson", "rate_rps": 20.0}
+}

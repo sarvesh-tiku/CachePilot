@@ -1,0 +1,95 @@
+{
+  "run_id": "88a9d93f-e7f9-4ba6-8ce3-60d73a6b155e",
+  "created_at": "2026-09-05T19:46:41.822932Z",
+  "workload": {
+    "name": "hotspot",
+    "description": "60% of a 40 rps stream shares one 4K-token prefix. Tests whether cache affinity concentrates load on one worker and hurts tail latency.",
+    "prefix_tokens": 512,
+    "question_tokens": 32,
+    "output_tokens": 24,
+    "shared_prefix_count": 1,
+    "shared_fraction": 1.0,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "poisson",
+      "rate_rps": 0.5,
+      "burst_size": 10,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 500.0
+    },
+    "kv_capacity_bytes_per_worker": null
+  },
+  "policy": "kv_aware",
+  "policy_parameters": {
+    "alpha": 2.0,
+    "beta": 0.8,
+    "gamma": 0.4,
+    "delta": 0.002
+  },
+  "seed": 11,
+  "requested": 24,
+  "workers": 1,
+  "metrics": {
+    "requests": 24,
+    "completed": 24,
+    "makespan_ms": 47237.17495799065,
+    "requests_per_s": 0.5080744143006832,
+    "output_tokens_per_s": 11.770390597965829,
+    "ttft_ms": {
+      "mean": 206.2699895395781,
+      "p50": 191.64137498592027,
+      "p95": 272.2913749748841,
+      "p99": 489.1445829998702,
+      "max": 489.1445829998702
+    },
+    "total_latency_ms": {
+      "mean": 344.7395936624768,
+      "p50": 332.78745799907483,
+      "p95": 432.0212499878835,
+      "p99": 615.3756659768987,
+      "max": 615.3756659768987
+    },
+    "queue_wait_ms": {
+      "mean": 0.0,
+      "p50": 0.0,
+      "p95": 0.0,
+      "p99": 0.0,
+      "max": 0.0
+    },
+    "cache_hit_rate": 1.0,
+    "mean_cache_overlap": 0.9326047358834244,
+    "ttft_ms_by_cache": {
+      "hit": {
+        "mean": 206.2699895395781,
+        "p50": 191.64137498592027,
+        "p95": 272.2913749748841,
+        "p99": 489.1445829998702,
+        "max": 489.1445829998702
+      }
+    },
+    "prefill_tokens_total": 888,
+    "prefill_tokens_saved": 12288,
+    "prefill_saved_fraction": 0.9326047358834244,
+    "worker_request_counts": {
+      "mlx-0": 24
+    },
+    "worker_imbalance": 1.0,
+    "kv": [
+      {
+        "worker_id": "mlx-0",
+        "source": "estimated",
+        "capacity_bytes": 8589934592,
+        "used_bytes": 8522825728,
+        "entries": 127,
+        "hits": 45,
+        "misses": 32,
+        "evictions": 0
+      }
+    ]
+  },
+  "mode": "live",
+  "gateway_url": "http://localhost:8000",
+  "worker_backends": {
+    "mlx-0": "vllm"
+  }
+}

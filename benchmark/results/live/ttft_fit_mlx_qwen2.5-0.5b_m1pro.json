@@ -1,0 +1,50 @@
+{
+  "estimator": {
+    "queue_wait_ms_per_pending": 12.0,
+    "prefill_ms_per_token": 0.3152970550104327,
+    "fixed_overhead_ms": 198.26380812361325
+  },
+  "baseline": {
+    "queue_wait_ms_per_pending": 12.0,
+    "prefill_ms_per_token": 0.05,
+    "fixed_overhead_ms": 15.0
+  },
+  "samples": 72,
+  "sources": {
+    "live_independent_kv_aware_seed11.csv": 24,
+    "live_shared_prefix_heavy_kv_aware_seed11.csv": 24,
+    "live_hotspot_kv_aware_seed11.csv": 24
+  },
+  "in_sample": {
+    "samples": 72,
+    "mae_ms": 70.16697327485923,
+    "bias_ms": 1.697407646538017e-14,
+    "r2": 0.3100809638961053
+  },
+  "baseline_in_sample": {
+    "samples": 72,
+    "mae_ms": 245.90339055663208,
+    "bias_ms": -245.90339055663208,
+    "r2": -2.9369140109620786
+  },
+  "holdout": {
+    "live_independent_kv_aware_seed11.csv": {
+      "samples": 24,
+      "mae_ms": 135.45936445855963,
+      "bias_ms": 23.791060621685272,
+      "r2": -0.01689736552670995
+    },
+    "live_shared_prefix_heavy_kv_aware_seed11.csv": {
+      "samples": 24,
+      "mae_ms": 44.40673529279593,
+      "bias_ms": -10.674827739219628,
+      "r2": 0.5423711487934249
+    },
+    "live_hotspot_kv_aware_seed11.csv": {
+      "samples": 24,
+      "mae_ms": 41.10641978732017,
+      "bias_ms": 8.05158116272648,
+      "r2": -0.015018394008569746
+    }
+  }
+}

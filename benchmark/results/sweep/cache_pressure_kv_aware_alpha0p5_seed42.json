@@ -1,0 +1,122 @@
+{
+  "run_id": "627a9c36-fbe9-4980-81f0-7d0fac582f18",
+  "created_at": "2026-09-05T21:43:21.274302Z",
+  "workload": {
+    "name": "cache_pressure",
+    "description": "40 distinct 2K-token prefixes (1 GiB of KV each) cycle uniformly against 4 GiB of KV per worker: the working set is ~3x total capacity. Tests eviction behavior.",
+    "prefix_tokens": 2048,
+    "question_tokens": 32,
+    "output_tokens": 64,
+    "shared_prefix_count": 40,
+    "shared_fraction": 1.0,
+    "shared_skew": 0.0,
+    "arrival": {
+      "kind": "poisson",
+      "rate_rps": 20.0,
+      "burst_size": 10,
+      "burst_spacing_ms": 5.0,
+      "burst_gap_mean_ms": 500.0
+    },
+    "kv_capacity_bytes_per_worker": 4294967296
+  },
+  "policy": "kv_aware",
+  "policy_parameters": {
+    "alpha": 0.5,
+    "beta": 0.8,
+    "gamma": 0.4,
+    "delta": 0.002
+  },
+  "seed": 42,
+  "requested": 1000,
+  "workers": 3,
+  "metrics": {
+    "requests": 1000,
+    "completed": 1000,
+    "makespan_ms": 48782.45664969732,
+    "requests_per_s": 20.49917262635859,
+    "output_tokens_per_s": 1311.9470480869497,
+    "ttft_ms": {
+      "mean": 135.76914853668256,
+      "p50": 155.02867781199083,
+      "p95": 185.0236836929892,
+      "p99": 198.96647818029066,
+      "max": 214.2444645564635
+    },
+    "total_latency_ms": {
+      "mean": 639.7691485366826,
+      "p50": 659.0286778119909,
+      "p95": 689.0236836929892,
+      "p99": 702.9664781802907,
+      "max": 718.2444645564635
+    },
+    "queue_wait_ms": {
+      "mean": 46.224,
+      "p50": 48.0,
+      "p95": 72.0,
+      "p99": 84.0,
+      "max": 96.0
+    },
+    "cache_hit_rate": 0.291,
+    "mean_cache_overlap": 0.2858359712230216,
+    "ttft_ms_by_cache": {
+      "hit": {
+        "mean": 69.22028258059608,
+        "p50": 69.02143479790448,
+        "p95": 97.20271986276745,
+        "p99": 102.70786984944856,
+        "max": 117.44387570289291
+      },
+      "miss": {
+        "mean": 163.08328110822157,
+        "p50": 164.0819520570399,
+        "p95": 188.01127120748205,
+        "p99": 201.47368257168048,
+        "max": 214.2444645564635
+      }
+    },
+    "prefill_tokens_total": 1489032,
+    "prefill_tokens_saved": 595968,
+    "prefill_saved_fraction": 0.28583597122302157,
+    "worker_request_counts": {
+      "worker-0": 350,
+      "worker-1": 326,
+      "worker-2": 324
+    },
+    "worker_imbalance": 1.05,
+    "kv": [
+      {
+        "worker_id": "worker-0",
+        "source": "simulated",
+        "capacity_bytes": 4294967296,
+        "used_bytes": 4294967296,
+        "entries": 64,
+        "hits": 98,
+        "misses": 252,
+        "evictions": 4240
+      },
+      {
+        "worker_id": "worker-1",
+        "source": "simulated",
+        "capacity_bytes": 4294967296,
+        "used_bytes": 4294967296,
+        "entries": 64,
+        "hits": 83,
+        "misses": 243,
+        "evictions": 3968
+      },
+      {
+        "worker_id": "worker-2",
+        "source": "simulated",
+        "capacity_bytes": 4294967296,
+        "used_bytes": 4294967296,
+        "entries": 64,
+        "hits": 110,
+        "misses": 214,
+        "evictions": 3744
+      }
+    ]
+  },
+  "mode": "simulated",
+  "gateway_url": null,
+  "worker_backends": {}
+}
